@@ -32,8 +32,11 @@ Our class distillery. Whiskey and other things made with grain.
   - `DateBarrelled`
   - `DateBottled`
   - `NumberOfBarrels`
+  - `DateBottled`
+  - `NumberOfBottles`
   - `Cooker`
   - `PricePerBottle`
+  - `NumberOfBottlesLeft`
 - `Orders` table
   - `Id`
   - `BatchId`
