@@ -2,6 +2,9 @@
 Our class distillery. Whiskey and other things made with grain.
 
 - [ ] Create recipe
+  - Recipe table
+    - Id
+    - Name
 
 - [ ] Harvest Grain
 
