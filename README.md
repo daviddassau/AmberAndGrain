@@ -17,14 +17,17 @@ Our class distillery. Whiskey and other things made with grain.
 - [ ] Sell
   - how many bottles
 
-- `Recipes` table
-  - `Id` (points to `RecipeId` on the `Batches` table)
-  - `Name`
-  - `Percent Wheat`
-  - `Percent Corn`
-  - `Barrel Age`
-  - `Barrel Material`
-  - `Creator`
+### `Recipes` table
+- `Id` (points to `RecipeId` on the `Batches` table)
+- `Name`
+- `Percent Wheat`
+- `Percent Corn`
+- `Barrel Age`
+- `Barrel Material`
+- `Creator`
+
+
+
 - `Batches` table
   - `Id` (points to `BatchId` on the `Orders` table)
   - `RecipeId`
