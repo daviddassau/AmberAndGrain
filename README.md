@@ -3,7 +3,7 @@ Our class distillery. Whiskey and other things made with grain.
 
 - [x] Create recipe
 
-- [ ] Mash
+- [x] Batch
 
 - [ ] Distill
 
