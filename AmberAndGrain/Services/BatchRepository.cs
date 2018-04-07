@@ -16,10 +16,34 @@ namespace AmberAndGrain.Services
             {
                 db.Open();
                 var batchesCreated = db.Execute(@"INSERT INTO Batches (RecipeId, Cooker)
-                             VALUES (@recipeId, @cooker)", new { recipeId, cooker });
+                             VALUES (@recipeId, @cooker)", new {recipeId,cooker});
 
                 return batchesCreated == 1;
             }
         }
+
+        public Batch Get(int batchId)
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+                var getSingleBatch = db.QueryFirst<Batch>();
+            }
+        }
+    }
+
+    public class Batch
+    {
+        public int Id { get; set; }
+        public int RecipeId { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateBarrelled { get; set; }
+        public int NumberOfBarrels { get; set; }
+        public DateTime DateBottled { get; set; }
+        public int NumberOfBottles { get; set; }
+        public string Cooker { get; set; }
+        public double PricePerBottle { get; set; }
+        public int NumberOfBottlesLeft { get; set; }
+        public int Status { get; set; }
     }
 }

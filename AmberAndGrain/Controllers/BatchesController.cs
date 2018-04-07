@@ -25,5 +25,11 @@ namespace AmberAndGrain.Controllers
 
             return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Sorry about your luck, shmuck");
         }
+
+        [Route("{batchId}/mash"), HttpPatch]
+        public HttpResponseMessage MashBatch(int batchId)
+        {
+
+        }
     }
 }
