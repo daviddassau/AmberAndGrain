@@ -1,7 +1,7 @@
 # Amber and Grain
 Our class distillery. Whiskey and other things made with grain.
 
-- [ ] Create recipe
+- [x] Create recipe
 
 - [ ] Mash
 
