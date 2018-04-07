@@ -26,26 +26,25 @@ Our class distillery. Whiskey and other things made with grain.
 - `Barrel Material`
 - `Creator`
 
+### `Batches` table
+- `Id` (points to `BatchId` on the `Orders` table)
+- `RecipeId`
+- `DateCreated`
+- `DateBarrelled`
+- `DateBottled`
+- `NumberOfBarrels`
+- `DateBottled`
+- `NumberOfBottles`
+- `Cooker`
+- `PricePerBottle`
+- `NumberOfBottlesLeft`
 
-
-- `Batches` table
-  - `Id` (points to `BatchId` on the `Orders` table)
-  - `RecipeId`
-  - `DateCreated`
-  - `DateBarrelled`
-  - `DateBottled`
-  - `NumberOfBarrels`
-  - `DateBottled`
-  - `NumberOfBottles`
-  - `Cooker`
-  - `PricePerBottle`
-  - `NumberOfBottlesLeft`
-- `Orders` table
-  - `Id`
-  - `BatchId`
-  - `NumberOfBottles`
-  - `DateOfOrder`
-  - `CustomerId`
+### `Orders` table
+- `Id`
+- `BatchId`
+- `NumberOfBottles`
+- `DateOfOrder`
+- `CustomerId`
   
   
   
