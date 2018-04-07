@@ -29,7 +29,13 @@ namespace AmberAndGrain.Controllers
         [Route("{batchId}/mash"), HttpPatch]
         public HttpResponseMessage MashBatch(int batchId)
         {
+            var repository = new BatchRepository();
+            var result = repository.Get(batchId);
 
+            if (result.Status == BatchStatus.Created)
+            {
+                result.Status = BatchStatus.Mashed
+            }
         }
     }
 }

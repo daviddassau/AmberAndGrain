@@ -13,7 +13,7 @@ namespace AmberAndGrain.Services
     {
         public bool Create(int recipeId, string cooker)
         {
-            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            using (var db = GetConnection())
             {
                 db.Open();
                 var batchesCreated = db.Execute(@"INSERT INTO Batches (RecipeId, Cooker)
@@ -25,13 +25,39 @@ namespace AmberAndGrain.Services
 
         public Batch Get(int batchId)
         {
-            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            using (var db = GetConnection())
             {
                 db.Open();
                 var getSingleBatch = db.QueryFirst<Batch>(@"SELECT * FROM Batches WHERE Id = @batchId", batchId);
 
                 return getSingleBatch;
             }
+        }
+
+        public bool Update(Batch batch)
+        {
+            using (var db = GetConnection())
+            {
+                db.Open();
+
+                var result = db.Execute(@"UPDATE [dbo].[Batches]
+                                           SET [DateBarrelled] = @DateBarrelled
+                                              ,[NumberOfBarrels] = @NumberOfBarrels
+                                              ,[DateBottled] = @DateBottled
+                                              ,[NumberOfBottles] = @NumberOfBottles
+                                              ,[Cooker] = @Cooker
+                                              ,[PricePerBottle] = @PricePerBottle
+                                              ,[NumberOfBottlesLeft] = @NumberOfBottlesLeft
+                                              ,[Status] = @Status
+                                                WHERE id = @id", batch);
+
+                return result == 1;
+            }
+        }
+
+        private static SqlConnection GetConnection()
+        {
+            return new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString);
         }
     }
 
