@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using AmberAndGrain.Models;
 using Dapper;
 
 namespace AmberAndGrain.Services
@@ -27,7 +28,9 @@ namespace AmberAndGrain.Services
             using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
             {
                 db.Open();
-                var getSingleBatch = db.QueryFirst<Batch>();
+                var getSingleBatch = db.QueryFirst<Batch>(@"SELECT * FROM Batches WHERE Id = @batchId", batchId);
+
+                return getSingleBatch;
             }
         }
     }
@@ -37,13 +40,13 @@ namespace AmberAndGrain.Services
         public int Id { get; set; }
         public int RecipeId { get; set; }
         public DateTime DateCreated { get; set; }
-        public DateTime DateBarrelled { get; set; }
-        public int NumberOfBarrels { get; set; }
-        public DateTime DateBottled { get; set; }
-        public int NumberOfBottles { get; set; }
+        public DateTime? DateBarrelled { get; set; }
+        public int? NumberOfBarrels { get; set; }
+        public DateTime? DateBottled { get; set; }
+        public int? NumberOfBottles { get; set; }
         public string Cooker { get; set; }
-        public double PricePerBottle { get; set; }
-        public int NumberOfBottlesLeft { get; set; }
-        public int Status { get; set; }
+        public double? PricePerBottle { get; set; }
+        public int? NumberOfBottlesLeft { get; set; }
+        public BatchStatus Status { get; set; }
     }
 }
