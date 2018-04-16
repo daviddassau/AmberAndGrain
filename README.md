@@ -5,7 +5,7 @@ Our class distillery. Whiskey and other things made with grain.
 
 - [x] Batch
 
-- [ ] Mash
+- [x] Mash
 
 - [ ] Distill
 
