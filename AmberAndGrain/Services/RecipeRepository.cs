@@ -35,7 +35,7 @@ namespace AmberAndGrain.Services
             }
         }
 
-        internal List<RecipeDto> GetAll()
+        public List<RecipeDto> GetAll()
         {
             using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
             {
@@ -43,6 +43,43 @@ namespace AmberAndGrain.Services
 
                 var result = db.Query<RecipeDto>("Select * from Recipes").ToList();
                 return result;
+            }
+        }
+
+        public RecipeDto Get(int id)
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var result = db.QueryFirstOrDefault<RecipeDto>("Select * from Recipes where id = @id", new { id });
+                return result;
+            }
+        }
+
+        public void Update(int id, RecipeDto recipe)
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var numberCreated = db.Execute(@"Update Recipes
+                                                 set Name = @Name,
+                                                 PercentWheat = @PercentWheat,
+                                                 PercentCorn = @PercentCorn,
+                                                 BarrelAge = @BarrelAge,
+                                                 Creator = @Creator
+                                                 Where id = @id", new
+                {
+                    recipe.name,
+                    recipe.barrelAge,
+                    recipe.barrelMaterial,
+                    recipe.creator,
+                    recipe.percentCorn,
+                    recipe.percentWheat,
+                    id
+                });
+
             }
         }
     }
